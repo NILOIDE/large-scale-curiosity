@@ -1,0 +1,13 @@
+tensorflow_gpu==2.0.0
+cloudpickle==0.6.1
+numpy==1.17.4
+gym==0.10.5
+baselines==0.1.5
+ipdb==0.12.3
+mpi4py==3.0.3
+Pillow==7.0.0
+PyOpenGL==3.1.5
+retro==2.8.0
+roboschool==1.0.34
+tensorflow==1.15
+opencv-python=4.0

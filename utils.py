@@ -7,6 +7,7 @@ import numpy as np
 import tensorflow as tf
 from baselines.common.tf_util import normc_initializer
 from mpi4py import MPI
+from tensorflow.python.client import device_lib
 
 
 def bcast_tf_vars_from_root(sess, vars):
@@ -61,7 +62,14 @@ def setup_mpi_gpus():
     """
     Set CUDA_VISIBLE_DEVICES using MPI.
     """
-    available_gpus = guess_available_gpus()
+
+    def get_available_gpus():
+        local_device_protos = device_lib.list_local_devices()
+        print(local_device_protos)
+        return [x.name for x in local_device_protos if x.device_type == 'GPU']
+    n_gpus = len(get_available_gpus())
+    print('Number of GPUs:', n_gpus)
+    available_gpus = guess_available_gpus(n_gpus)
 
     node_id = platform.node()
     nodes_ordered_by_rank = MPI.COMM_WORLD.allgather(node_id)
@@ -76,6 +84,7 @@ def guess_available_cpus():
 
 def setup_tensorflow_session():
     num_cpu = guess_available_cpus()
+    print('Number of CPUs:', num_cpu)
 
     tf_config = tf.ConfigProto(
         inter_op_parallelism_threads=num_cpu,

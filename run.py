@@ -21,6 +21,7 @@ from dynamics import Dynamics, UNet
 from utils import random_agent_ob_mean_std
 from wrappers import MontezumaInfoWrapper, make_mario_env, make_robo_pong, make_robo_hockey, \
     make_multi_pong, AddRandomStateToInfo, MaxAndSkipEnv, ProcessFrame84, ExtraTimeLimit
+import datetime
 
 
 def start_experiment(**args):
@@ -154,7 +155,8 @@ def get_experiment_environment(**args):
     set_global_seeds(process_seed)
     setup_mpi_gpus()
 
-    logger_context = logger.scoped_configure(dir=None,
+    dir_name = 'results/' + datetime.datetime.now().strftime(args['env'] + "-%Y-%m-%d-%H-%M-%S-%f")
+    logger_context = logger.scoped_configure(dir=dir_name,
                                              format_strs=['stdout', 'log',
                                                           'csv'] if MPI.COMM_WORLD.Get_rank() == 0 else ['log'])
     tf_context = setup_tensorflow_session()
@@ -182,9 +184,9 @@ def add_optimization_params(parser):
 
 
 def add_rollout_params(parser):
-    parser.add_argument('--nsteps_per_seg', type=int, default=128)
+    parser.add_argument('--nsteps_per_seg', type=int, default=64)
     parser.add_argument('--nsegs_per_env', type=int, default=1)
-    parser.add_argument('--envs_per_process', type=int, default=128)
+    parser.add_argument('--envs_per_process', type=int, default=8)
     parser.add_argument('--nlumps', type=int, default=1)
 
 
@@ -203,7 +205,7 @@ if __name__ == '__main__':
     parser.add_argument('--ext_coeff', type=float, default=0.)
     parser.add_argument('--int_coeff', type=float, default=1.)
     parser.add_argument('--layernorm', type=int, default=0)
-    parser.add_argument('--feat_learning', type=str, default="none",
+    parser.add_argument('--feat_learning', type=str, default="idf",
                         choices=["none", "idf", "vaesph", "vaenonsph", "pix2pix"])
 
     args = parser.parse_args()
