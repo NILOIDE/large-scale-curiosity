@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --time=0-00:59:00
+#SBATCH --time=0-00:5:00
 #SBATCH --mem=20000M
 #SBATCH --nodes=1
 #SBATCH --partition=short
