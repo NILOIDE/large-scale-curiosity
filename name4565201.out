@@ -1,0 +1,74 @@
+WARNING:tensorflow:From /home/nilsa/large-scale-curiosity/utils.py:121: The name tf.get_default_session is deprecated. Please use tf.compat.v1.get_default_session instead.
+
+WARNING:tensorflow:From /home/nilsa/large-scale-curiosity/mpi_utils.py:6: The name tf.train.AdamOptimizer is deprecated. Please use tf.compat.v1.train.AdamOptimizer instead.
+
+WARNING:tensorflow:From /home/nilsa/large-scale-curiosity/cnn_policy.py:16: The name tf.variable_scope is deprecated. Please use tf.compat.v1.variable_scope instead.
+
+WARNING:tensorflow:From /home/nilsa/large-scale-curiosity/cnn_policy.py:20: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+WARNING:tensorflow:From /home/nilsa/large-scale-curiosity/cnn_policy.py:53: to_float (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.cast` instead.
+WARNING:tensorflow:From /home/nilsa/large-scale-curiosity/utils.py:144: conv2d (from tensorflow.python.layers.convolutional) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.keras.layers.Conv2D` instead.
+WARNING:tensorflow:From /home/nilsa/.conda/envs/test/lib/python3.6/site-packages/tensorflow_core/python/layers/convolutional.py:424: Layer.apply (from tensorflow.python.keras.engine.base_layer) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `layer.__call__` method instead.
+WARNING:tensorflow:From /home/nilsa/large-scale-curiosity/utils.py:148: dense (from tensorflow.python.layers.core) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.Dense instead.
+WARNING:tensorflow:From /home/nilsa/.conda/envs/test/lib/python3.6/site-packages/baselines/common/distributions.py:151: The name tf.random_uniform is deprecated. Please use tf.random.uniform instead.
+
+WARNING:tensorflow:From /home/nilsa/.conda/envs/test/lib/python3.6/site-packages/baselines/common/distributions.py:152: The name tf.log is deprecated. Please use tf.math.log instead.
+
+WARNING:tensorflow:From /home/nilsa/.conda/envs/test/lib/python3.6/site-packages/baselines/common/distributions.py:145: calling reduce_max_v1 (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+WARNING:tensorflow:From /home/nilsa/.conda/envs/test/lib/python3.6/site-packages/baselines/common/distributions.py:147: calling reduce_sum_v1 (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+WARNING:tensorflow:From /home/nilsa/.conda/envs/test/lib/python3.6/site-packages/baselines/common/distributions.py:134: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+WARNING:tensorflow:From /home/nilsa/.conda/envs/test/lib/python3.6/site-packages/baselines/common/misc_util.py:75: The name tf.set_random_seed is deprecated. Please use tf.compat.v1.set_random_seed instead.
+
+2020-03-11 16:33:48.353125: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 AVX512F FMA
+2020-03-11 16:33:48.360497: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2100000000 Hz
+2020-03-11 16:33:48.361222: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x59ea870 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2020-03-11 16:33:48.361253: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+2020-03-11 16:33:48.362489: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /hpc/eb/Debian9/cuDNN/7.1-CUDA-8.0.44-GCCcore-5.4.0/lib64:/sw/arch/Debian9/EB_production/2019/software/cuDNN/7.6.3-CUDA-10.0.130/lib64:/sw/arch/Debian9/EB_production/2019/software/CUDA/10.0.130/nvvm/lib64:/sw/arch/Debian9/EB_production/2019/software/CUDA/10.0.130/extras/CUPTI/lib64:/sw/arch/Debian9/EB_production/2019/software/CUDA/10.0.130/lib64
+2020-03-11 16:33:48.362506: E tensorflow/stream_executor/cuda/cuda_driver.cc:318] failed call to cuInit: UNKNOWN ERROR (303)
+2020-03-11 16:33:48.362528: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (r26n19.lisa.surfsara.nl): /proc/driver/nvidia/version does not exist
+no OpenGL.GLU
+[name: "/device:CPU:0"
+device_type: "CPU"
+memory_limit: 268435456
+locality {
+}
+incarnation: 13739831967659494836
+, name: "/device:XLA_CPU:0"
+device_type: "XLA_CPU"
+memory_limit: 17179869184
+locality {
+}
+incarnation: 12889236517535918752
+physical_device_desc: "device: XLA_CPU device"
+]
+Number of GPUs: 0
+Traceback (most recent call last):
+  File "run.py", line 213, in <module>
+    start_experiment(**args.__dict__)
+  File "run.py", line 33, in start_experiment
+    log, tf_sess = get_experiment_environment(**args)
+  File "run.py", line 156, in get_experiment_environment
+    setup_mpi_gpus()
+  File "/home/nilsa/large-scale-curiosity/utils.py", line 78, in setup_mpi_gpus
+    os.environ['CUDA_VISIBLE_DEVICES'] = str(available_gpus[local_rank])
+IndexError: list index out of range
+srun: error: r26n19: task 0: Exited with exit code 1

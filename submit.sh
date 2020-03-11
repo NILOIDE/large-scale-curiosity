@@ -1,7 +1,8 @@
 #!/bin/bash
-#SBATCH --time=2-23:59:59
+#SBATCH --time=3-00:00:00
 #SBATCH --mem=20000M
 #SBATCH --nodes=1
+#SBATCH --partition=gpu_shared
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=nil.stoltanso@student.uva.nl
 #SBATCH --output=name%j.out
