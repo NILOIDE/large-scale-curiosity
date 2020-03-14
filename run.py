@@ -153,7 +153,7 @@ def get_experiment_environment(**args):
     process_seed = args["seed"] + 1000 * MPI.COMM_WORLD.Get_rank()
     process_seed = hash_seed(process_seed, max_bytes=4)
     set_global_seeds(process_seed)
-    # setup_mpi_gpus()
+    setup_mpi_gpus()
 
     dir_name = 'results/' + datetime.datetime.now().strftime(args['env'] + "-%Y-%m-%d-%H-%M-%S-%f")
     logger_context = logger.scoped_configure(dir=dir_name,
@@ -184,9 +184,9 @@ def add_optimization_params(parser):
 
 
 def add_rollout_params(parser):
-    parser.add_argument('--nsteps_per_seg', type=int, default=64)
+    parser.add_argument('--nsteps_per_seg', type=int, default=32)
     parser.add_argument('--nsegs_per_env', type=int, default=1)
-    parser.add_argument('--envs_per_process', type=int, default=8)
+    parser.add_argument('--envs_per_process', type=int, default=16)
     parser.add_argument('--nlumps', type=int, default=1)
 
 
@@ -209,5 +209,5 @@ if __name__ == '__main__':
                         choices=["none", "idf", "vaesph", "vaenonsph", "pix2pix"])
 
     args = parser.parse_args()
-
+    print(args.__dict__['--feat_learning'])
     start_experiment(**args.__dict__)

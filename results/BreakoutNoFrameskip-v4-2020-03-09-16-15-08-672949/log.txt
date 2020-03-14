@@ -1,2 +1,0 @@
-Logging to results/BreakoutNoFrameskip-v4-2020-03-09-16-15-08-672949
-episode recordings saved to  results/BreakoutNoFrameskip-v4-2020-03-09-16-15-08-672949\env0_0.pk
