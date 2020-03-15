@@ -17,4 +17,4 @@ module load openmpi/gnu
 conda activate test
 
 export LD_LIBRARY_PATH=/hpc/eb/Debian9/cuDNN/7.1-CUDA-8.0.44-GCCcore-5.4.0/lib64:$LD_LIBRARY_PATH
-srun mpiexec -n 3 python3 run.py --envs_per_process=32 --nsteps_per_seg=128
+srun mpiexec -n 4 python3 run.py --envs_per_process=32 --nsteps_per_seg=128

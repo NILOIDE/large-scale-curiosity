@@ -70,13 +70,14 @@ def setup_mpi_gpus():
     n_gpus = len(get_available_gpus())
     print('Number of GPUs:', n_gpus)
     available_gpus = guess_available_gpus(n_gpus)
-
+    print(available_gpus)
     node_id = platform.node()
     nodes_ordered_by_rank = MPI.COMM_WORLD.allgather(node_id)
     processes_outranked_on_this_node = [n for n in nodes_ordered_by_rank[:MPI.COMM_WORLD.Get_rank()] if n == node_id]
     local_rank = len(processes_outranked_on_this_node)
     os.environ['CUDA_VISIBLE_DEVICES'] = str(available_gpus[local_rank])
-
+    print(os.environ['CUDA_VISIBLE_DEVICES'])
+    quit()
 
 def guess_available_cpus():
     return int(multiprocessing.cpu_count())
