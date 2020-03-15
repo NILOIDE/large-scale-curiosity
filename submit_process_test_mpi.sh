@@ -8,6 +8,7 @@
 module purge
 module load 2019
 module load Anaconda3/2018.12
+module load openmpi/gnu
 
 # run conda and activate the thesis environment
 . /sw/arch/Debian9/EB_production/2019/software/Anaconda3/2018.12/etc/profile.d/conda.sh
