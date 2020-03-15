@@ -1,11 +1,10 @@
 #!/bin/bash
-#SBATCH --time=3-00:00:00
+#SBATCH --time=0-00:10:00
 #SBATCH --mem=20000M
-#SBATCH --nodes=1
-#SBATCH --partition=normal
+#SBATCH --partition=gpu
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=nil.stoltanso@student.uva.nl
-#SBATCH --output=name%j.out
+#SBATCH --output=name%j_mpi_plain.out
 module purge
 module load 2019
 module load Anaconda3/2018.12
@@ -15,4 +14,4 @@ module load Anaconda3/2018.12
 conda activate test
 
 export LD_LIBRARY_PATH=/hpc/eb/Debian9/cuDNN/7.1-CUDA-8.0.44-GCCcore-5.4.0/lib64:$LD_LIBRARY_PATH
-srun python3 run.py
+srun python3 run.py --envs_per_process=32 --nsteps_per_seg=128

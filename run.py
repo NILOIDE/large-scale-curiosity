@@ -153,7 +153,7 @@ def get_experiment_environment(**args):
     process_seed = args["seed"] + 1000 * MPI.COMM_WORLD.Get_rank()
     process_seed = hash_seed(process_seed, max_bytes=4)
     set_global_seeds(process_seed)
-    # setup_mpi_gpus()
+    setup_mpi_gpus()
 
     dir_name = 'results/' + datetime.datetime.now().strftime(args['env'] + "-%Y-%m-%d-%H-%M-%S-%f")
     logger_context = logger.scoped_configure(dir=dir_name,
