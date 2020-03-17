@@ -69,7 +69,7 @@ def setup_mpi_gpus():
         return [x.name for x in local_device_protos if x.device_type == 'GPU']
     n_gpus = len(get_available_gpus())
     print('Number of GPUs:', n_gpus)
-    available_gpus = guess_available_gpus(n_gpus)
+    available_gpus = guess_available_gpus(1)
     print(available_gpus)
     node_id = platform.node()
     nodes_ordered_by_rank = MPI.COMM_WORLD.allgather(node_id)
